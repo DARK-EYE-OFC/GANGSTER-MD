@@ -229,12 +229,17 @@ async function handleMessageRevocation(sock, revocationMessage) {
             day: '2-digit', month: '2-digit', year: 'numeric'
         });
 
-        let text = `*🔰 ANTIDELETE REPORT 🔰*\n\n` +
-            `*🗑️ Deleted By:* @${deletedBy.split('@')[0]}\n` +
-            `*👤 Sender:* @${senderName}\n` +
-            `*📱 Number:* ${sender}\n` +
-            `*🕒 Time:* ${time}\n`;
-
+        let text = `╔════════╗\n` +
+`║➤ *ᴀɴᴛɪ-ᴅᴇʟᴇᴛᴇ ᴅᴇᴛᴇᴄᴛᴇᴅ*\n` +
+`╚════════╝\n\n` +
+`*🗑️ Deleted By:* @${deletedBy.split('@')[0]}\n` +
+`*👤 Sender:* @${senderName}\n` +
+`*📱 Number:* ${sender}\n` +
+`*🕒 Time:* ${time}\n\n` +
+`<•══════════•>\n` +
+`╰┈➤ https://alextheon.com.free\n` +
+`╰┈➤ _join our official website for some updates_`;
+        
         if (groupName) text += `*👥 Group:* ${groupName}\n`;
 
         if (original.content) {
