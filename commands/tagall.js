@@ -25,11 +25,32 @@ async function tagAllCommand(sock, chatId, senderId, message) {
         }
 
         // Create message with each member on a new line
-        let messageText = '🔊 *Hello Everyone:*\n\n';
-        participants.forEach(participant => {
-            messageText += `@${participant.id.split('@')[0]}\n`; // Add \n for new line
-        });
+        const numbers = ['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
 
+async function tagAllCommand(sock, chatId, participants) {
+    let messageText = `*╔══════════════╗\n` +
+                      `║➤©ᴅᴀʀᴋ ᴇʏᴇ ᴏғᴄ ᴛᴇᴄʜ\n` +
+                      `╚══════════════╝*\n\n` +
+                      `*🙋🏽‍♀️ YOH WHAT'S UP BUDDIES❕*\n` +
+                      `*Total:* ${participants.length} members\n\n`;
+
+    participants.forEach((participant, index) => {
+        const num = index < 10 ? numbers[index] : `${index + 1}.` // use emoji for 1-10, else normal number
+        messageText += `${num} @${participant.id.split('@')[0]}\n`; // Add \n for new line
+    });
+
+    messageText += `\n╰┈➤ https://alextheon.com.free\n` +
+                   `╰┈➤ _join our official website for some updates_`;
+
+    const mentions = participants.map(p => p.id);
+
+    await sock.sendMessage(chatId, {
+        text: messageText,
+        mentions: mentions // this makes the @ tags work
+    });
+}
+
+module.exports = tagAllCommand;
         // Send message with mentions
         await sock.sendMessage(chatId, {
             text: messageText,
